@@ -7,11 +7,21 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddCors(cors =>
+{
+    cors.AddPolicy("public", corsOption =>
+    {
+        corsOption.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
+// setando o cors para publico assim posso ter acesso das infos da api em qualquer ambiente.
 
 var app = builder.Build();
 
@@ -24,6 +34,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapControllers();
 
+app.UseCors("public"); // setando o cors.
 
 app.Run();

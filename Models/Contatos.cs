@@ -15,5 +15,6 @@ namespace api.Models
         public string numero { get; set; }
         public string cpf { get; set; }
         public string email { get; set; }
+        public string foto { get; set; }
     }
 }
