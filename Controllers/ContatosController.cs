@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Dtos;
+using api.Mappers;
 using api.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +25,7 @@ namespace api.Controllers
         [HttpGet("getContatos")]
         public async Task<IActionResult> getContatos()
         {
-            var response = new Response<IEnumerable<Contatos>>();
+            var response = new Response<IEnumerable<ReadContatosDto>>();
             try
             {
                 var contatos = await _context.Contatos.ToListAsync();
@@ -35,7 +37,7 @@ namespace api.Controllers
                     return NotFound(response);
                 }
 
-                response.Data = contatos;
+                response.Data = contatos.Select(c => c.ToReadContatosDto());
                 response.Success = true;
                 response.Message = "Contatos encontrados com sucesso";
                 return Ok(response);
@@ -47,5 +49,23 @@ namespace api.Controllers
                 return BadRequest(response);
             }
         }
+
+        // [HttpPost("createContatos")]
+        // public async Task<IActionResult> createContato([FromForm] CreateContatoDto contatoDto)
+        // {
+        //     var response = new Response<CreateContatoDto>();
+        //     try
+        //     {
+
+
+
+        //     }
+        //     catch(Exception e)
+        //     {
+        //         response.Success = false;
+        //         response.Message = e.Message;
+        //         return BadRequest(response);
+        //     }
+        // }
     }
 }
