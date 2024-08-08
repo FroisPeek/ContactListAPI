@@ -18,7 +18,7 @@ namespace api.Mappers
                 sobrenome = contatos.sobrenome,
                 email = contatos.email,
                 numero = contatos.numero,
-                foto = contatos.foto
+                link = contatos.link
             };
         }
 
@@ -30,7 +30,7 @@ namespace api.Mappers
                 sobrenome = contato.sobrenome,
                 email = contato.email,
                 numero = contato.numero,
-                foto = contato.foto
+                link = contato.link
             };
         }
     }

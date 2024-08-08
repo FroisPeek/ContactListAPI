@@ -50,22 +50,35 @@ namespace api.Controllers
             }
         }
 
-        // [HttpPost("createContatos")]
-        // public async Task<IActionResult> createContato([FromForm] CreateContatoDto contatoDto)
-        // {
-        //     var response = new Response<CreateContatoDto>();
-        //     try
-        //     {
+        [HttpPost("createContatos")]
+        public async Task<IActionResult> createContato([FromBody] CreateContatoDto newCt)
+        {
+            var response = new Response<CreateContatoDto>();
+            try
+            {
+                var newContato = new Contatos
+                {
+                    nome = newCt.nome,
+                    sobrenome = newCt.sobrenome,
+                    numero = newCt.numero,
+                    cpf = newCt.cpf,
+                    email = newCt.email,
+                    link = newCt.link
+                };
 
+                _context.Contatos.Add(newContato);
+                await _context.SaveChangesAsync();
 
-
-        //     }
-        //     catch(Exception e)
-        //     {
-        //         response.Success = false;
-        //         response.Message = e.Message;
-        //         return BadRequest(response);
-        //     }
-        // }
+                response.Success = true;
+                response.Message = "Contato criado com sucesso";
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response.Success = false;
+                response.Message = e.Message;
+                return BadRequest(response);
+            }
+        }
     }
 }

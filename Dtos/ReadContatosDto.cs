@@ -12,6 +12,6 @@ namespace api.Dtos
         public string sobrenome { get; set; }
         public string numero { get; set; }
         public string email { get; set; }
-        public string foto { get; set; }
+        public string link { get; set; }
     }
 }
