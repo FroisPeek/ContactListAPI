@@ -16,6 +16,7 @@ namespace api.Mappers
                 codigo = contatos.codigo,
                 nome = contatos.nome,
                 sobrenome = contatos.sobrenome,
+                cpf = contatos.cpf,
                 email = contatos.email,
                 numero = contatos.numero,
                 link = contatos.link
