@@ -80,5 +80,71 @@ namespace api.Controllers
                 return BadRequest(response);
             }
         }
+
+        [HttpPut("editContato/{contatoId}")]
+        public async Task<IActionResult> editContato([FromRoute] int contatoId, [FromBody] EditContatoDto editContato)
+        {
+            var response = new Response<EditContatoDto>();
+            try
+            {
+                var contatoToEdit = await _context.Contatos.FirstOrDefaultAsync(c => c.codigo == contatoId);
+
+                if (contatoToEdit == null)
+                {
+                    response.Success = false;
+                    response.Message = "Contato não encontrado";
+                    return NotFound(response);
+                }
+
+                contatoToEdit.nome = editContato.nome;
+                contatoToEdit.sobrenome = editContato.sobrenome;
+                contatoToEdit.email = editContato.email;
+                contatoToEdit.cpf = editContato.cpf;
+                contatoToEdit.numero = editContato.numero;
+                contatoToEdit.link = editContato.link;
+
+                await _context.SaveChangesAsync();
+                response.Data = contatoToEdit.ToEditContatoDto();
+                response.Success = true;
+                response.Message = "Contato editado com sucesso!";
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response.Success = false;
+                response.Message = e.Message;
+                return BadRequest(response);
+            }
+        }
+
+        [HttpDelete("DeleteContato/{contatoId}")]
+        public async Task<IActionResult> DeleteContato([FromRoute] int contatoId)
+        {
+            var response = new Response<ReadContatosDto>();
+            try
+            {
+                var contatoToDelete = await _context.Contatos.FirstOrDefaultAsync(c => c.codigo == contatoId);
+
+                if (contatoToDelete == null)
+                {
+                    response.Success = false;
+                    response.Message = "Nenhum contato encontrado";
+                    return NotFound(response);
+                }
+
+                _context.Contatos.Remove(contatoToDelete);
+                await _context.SaveChangesAsync();
+
+                response.Success = true;
+                response.Message = "Contato deletado com sucesso";
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response.Success = false;
+                response.Message = e.Message;
+                return BadRequest(response);
+            }
+        }
     }
 }

@@ -34,5 +34,18 @@ namespace api.Mappers
                 link = contato.link
             };
         }
+
+        public static EditContatoDto ToEditContatoDto(this Contatos contato)
+        {
+            return new EditContatoDto
+            {
+                nome = contato.nome,
+                sobrenome = contato.sobrenome,
+                cpf = contato.cpf,
+                email = contato.email,
+                numero = contato.numero,
+                link = contato.link
+            };
+        }
     }
 }
