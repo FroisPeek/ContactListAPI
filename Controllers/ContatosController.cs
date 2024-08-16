@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Dtos;
+using api.Helper;
 using api.Mappers;
 using api.Models;
 using Microsoft.AspNetCore.Cors;
@@ -146,5 +147,41 @@ namespace api.Controllers
                 return BadRequest(response);
             }
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string nome)
+        {
+            var response = new Response<List<Contatos>>();
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+                var query = _context.Contatos.AsQueryable();
+
+                if (!string.IsNullOrEmpty(nome))
+                {
+                    query = query.Where(o => o.nome.Contains(nome));
+                }
+
+                var results = await query.ToListAsync();
+
+                if (!results.Any())
+                {
+                    return NotFound(new { Message = "Nenhum contato encontrado." });
+                }
+
+                response.Data = results;
+                response.Success = true;
+                response.Message = "Contatos encontrados.";
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                response.Success = false;
+                response.Message = e.Message;
+                return BadRequest(response);
+            }
+        }
+
     }
 }
