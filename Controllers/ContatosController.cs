@@ -149,28 +149,19 @@ namespace api.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> Search([FromQuery] string nome)
+        public async Task<IActionResult> Search([FromQuery] string? nome)
         {
             var response = new Response<List<Contatos>>();
             try
             {
-                if (!ModelState.IsValid) return BadRequest(ModelState);
-
                 var query = _context.Contatos.AsQueryable();
 
                 if (!string.IsNullOrEmpty(nome))
                 {
-                    query = query.Where(o => o.nome.Contains(nome));
+                    query = query.Where(q => q.nome.Contains(nome));
                 }
 
-                var results = await query.ToListAsync();
-
-                if (!results.Any())
-                {
-                    return NotFound(new { Message = "Nenhum contato encontrado." });
-                }
-
-                response.Data = results;
+                response.Data = query.ToList();
                 response.Success = true;
                 response.Message = "Contatos encontrados.";
                 return Ok(response);
