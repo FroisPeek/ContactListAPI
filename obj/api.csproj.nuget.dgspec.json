@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Projetos Pessoais\\listaContatos2\\api\\api.csproj": {}
+    "C:\\Users\\User\\ProjetosPessoal\\ProgramacaoWeb\\ContactListAPI\\api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Projetos Pessoais\\listaContatos2\\api\\api.csproj": {
+    "C:\\Users\\User\\ProjetosPessoal\\ProgramacaoWeb\\ContactListAPI\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Projetos Pessoais\\listaContatos2\\api\\api.csproj",
+        "projectUniqueName": "C:\\Users\\User\\ProjetosPessoal\\ProgramacaoWeb\\ContactListAPI\\api.csproj",
         "projectName": "api",
-        "projectPath": "C:\\Users\\User\\Projetos Pessoais\\listaContatos2\\api\\api.csproj",
+        "projectPath": "C:\\Users\\User\\ProjetosPessoal\\ProgramacaoWeb\\ContactListAPI\\api.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Projetos Pessoais\\listaContatos2\\api\\obj\\",
+        "outputPath": "C:\\Users\\User\\ProjetosPessoal\\ProgramacaoWeb\\ContactListAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,13 +42,18 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.AspNetCore.Cors": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -87,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

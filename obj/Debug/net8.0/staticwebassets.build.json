@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "pyaMSCEWRZ4nvKCja2XnniyJFEBxfxA7VVvbHvFd6MQ=",
+  "Hash": "A9PKRZfZUTDhj1QRyCFFkEHzqJ04Y7sk6OEkYYD+as4=",
   "Source": "api",
   "BasePath": "_content/api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
